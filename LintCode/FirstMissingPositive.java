@@ -5,10 +5,16 @@ public class FirstMissingPositive {
         }
 
         for (int i = 0; i < nums.length; i++) {
-            while (nums[i] > 0 && nums[i] <= nums.length && nums[i] != nums[nums[i] - 1]) {
-                int temp = nums[i];
-                nums[i] = nums[nums[i] - 1];
-                nums[nums[i] - 1] = temp;
+            while (nums[i] > 0 && nums[i] <= nums.length && nums[i] != nums[nums[i] - 1] && nums[i] != i + 1) {
+                //Doesn't work for nums = {2, 1} if write the swap this way
+                //Why why why why why why why????????????????
+                // int temp = nums[i];
+                // nums[i] = nums[nums[i] - 1];
+                // nums[nums[i] - 1] = temp;
+
+                int temp = nums[nums[i] - 1];
+                nums[nums[i] - 1] = nums[i];
+                nums[i] = temp;
             }
         }
 
@@ -22,7 +28,7 @@ public class FirstMissingPositive {
     }
 
     public static void main(String[] args) {
-        int[] nums = {8, 9, 10, 13};
+        int[] nums = {2, 1};
         System.out.println(firstMissingPositive(nums));
     }
 }
